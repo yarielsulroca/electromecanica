@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Componente extends Model
 {
-
+    
     protected $perPage = 20;
 
     /**
@@ -43,13 +43,13 @@ class Componente extends Model
     {
         return $this->belongsTo(\App\Models\Item::class, 'item_id', 'id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function operations()
     {
-        return $this->hasMany(\App\Models\Operation::class, 'id', 'component_id');
+        return $this->hasMany(\App\Models\Operation::class, 'id', 'componente_id');
     }
-
+    
 }

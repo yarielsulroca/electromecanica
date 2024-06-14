@@ -1,13 +1,13 @@
 <div class="space-y-6">
-    
+
     <div>
         <x-input-label for="user_id" :value="__('User Id')"/>
-        <x-text-input id="user_id" name="user_id" type="text" class="mt-1 block w-full" :value="old('user_id', $workorder?->user_id)" autocomplete="user_id" placeholder="User Id"/>
+        <x-text-input id="user_id" name="user_id" type="text" class="mt-1 block w-full" :value="old('user_id', $workorder?->user_id)" autocomplete="user_id" placeholder="{{ __('User Id') }}"/>
         <x-input-error class="mt-2" :messages="$errors->get('user_id')"/>
     </div>
     <div>
         <x-input-label for="about" :value="__('About')"/>
-        <x-text-input id="about" name="about" type="text" class="mt-1 block w-full" :value="old('about', $workorder?->about)" autocomplete="about" placeholder="About"/>
+        <x-text-input id="about" name="about" type="text" class="mt-1 block w-full" :value="old('about', $workorder?->about)" autocomplete="about" placeholder="{{ __('About') }}"/>
         <x-input-error class="mt-2" :messages="$errors->get('about')"/>
     </div>
     <div>
@@ -32,6 +32,6 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <x-primary-button>Submit</x-primary-button>
+        <x-primary-button>{{ __('Submit') }}</x-primary-button>
     </div>
 </div>

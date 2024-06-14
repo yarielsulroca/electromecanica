@@ -33,32 +33,23 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Part extends Model
 {
-
-    static $rules = [
-		'price' => 'required',
-		'quantity' => 'required',
-		'saleprice' => 'required',
-		'typepurchase' => 'required',
-		'budjet_id' => 'required',
-    ];
-
+    
     protected $perPage = 20;
 
     /**
-     * Attributes that should be mass-assignable.
+     * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
-    protected $fillable = ['categorie','code','mark','price','features','provider','date_init','date_out','quantity','costunit','saleprice','tax','gain','inflation','typepurchase','budjet_id'];
+    protected $fillable = ['categorie', 'code', 'mark', 'price', 'features', 'provider', 'date_init', 'date_out', 'quantity', 'costunit', 'saleprice', 'tax', 'gain', 'inflation', 'typepurchase', 'budjet_id'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function budjet()
     {
-        return $this->belongsTo('App\Models\Budjet', 'id', 'budjet_id');
+        return $this->belongsTo(\App\Models\Budjet::class, 'budjet_id', 'id');
     }
-
-
+    
 }

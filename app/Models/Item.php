@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  *
  * @property Service $service
- * @property Component[] $components
+ * @property Componente[] $componentes
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -47,9 +47,9 @@ class Item extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function components()
+    public function componentes()
     {
-        return $this->hasMany(\App\Models\Component::class, 'id', 'item_id');
+        return $this->hasMany(\App\Models\Componente::class, 'id', 'item_id');
     }
     
 }

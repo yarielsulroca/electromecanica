@@ -21,38 +21,31 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Labour extends Model
 {
-
-    static $rules = [
-		'value' => 'required',
-		'tax' => 'required',
-		'budjet_id' => 'required',
-    ];
-
+    
     protected $perPage = 20;
 
     /**
-     * Attributes that should be mass-assignable.
+     * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
-    protected $fillable = ['value','tax','budjet_id'];
+    protected $fillable = ['value', 'tax', 'budjet_id'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function budjet()
     {
-        return $this->belongsTo('App\Models\Budjet', 'id', 'budjet_id');
+        return $this->belongsTo(\App\Models\Budjet::class, 'budjet_id', 'id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function operations()
     {
-        return $this->hasMany('App\Models\Operation', 'labour_id', 'id');
+        return $this->hasMany(\App\Models\Operation::class, 'id', 'labour_id');
     }
-
-
+    
 }

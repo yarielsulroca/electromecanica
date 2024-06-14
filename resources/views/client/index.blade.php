@@ -25,8 +25,8 @@
                                 <table class="w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr>
-                                    
-
+                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
+                                        
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Contacto</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Social</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Direccion</th>
@@ -44,17 +44,8 @@
                                     <tbody class="divide-y divide-gray-200 bg-white">
                                     @foreach ($clients as $client)
                                         <tr class="even:bg-gray-50">
-
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            <div class="border rounded-lg p-4">
-                                                <h2 class="text-lg font-semibold">{{ $cliente->contacto }}</h2>
-                                                    <ul class="space-y-2">
-                                                        @foreach ($cliente->ordenes as $orden)
-                                                             <li>{{ $workorders->id }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </td>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
+                                            
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->contacto }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->social }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->direccion }}</td>
@@ -65,7 +56,6 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->telefono_cliente }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->telefono_contacto }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $client->allow }}</td>
-
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('clients.destroy', $client->id) }}" method="POST">

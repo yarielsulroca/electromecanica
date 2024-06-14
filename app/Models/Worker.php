@@ -2,45 +2,41 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Worker.
+ * Class Worker
  *
- * @property             $id
- * @property             $name
- * @property             $dni
- * @property             $charge_name
- * @property             $created_at
- * @property             $updated_at
+ * @property $id
+ * @property $name
+ * @property $dni
+ * @property $charge_name
+ * @property $created_at
+ * @property $updated_at
+ *
  * @property Operation[] $operations
- *
+ * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Worker extends Model
 {
-    use HasFactory;
-    public static $rules = [
-        'name' => 'required',
-        'dni' => 'required',
-        'charge_name' => 'required',
-    ];
-
+    
     protected $perPage = 20;
 
     /**
-     * Attributes that should be mass-assignable.
+     * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = ['name', 'dni', 'charge_name'];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function operations()
     {
-        return $this->hasMany('App\Models\Operation', 'id', 'worker_id');
+        return $this->hasMany(\App\Models\Operation::class, 'id', 'worker_id');
     }
+    
 }

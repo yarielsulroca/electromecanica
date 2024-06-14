@@ -26,13 +26,13 @@
                                     <thead>
                                     <tr>
                                         <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
-
+                                        
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">User Id</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">About</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Problems</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date Init</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Date End</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Client</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Client Id</th>
 
                                         <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
                                     </tr>
@@ -41,13 +41,13 @@
                                     @foreach ($workorders as $workorder)
                                         <tr class="even:bg-gray-50">
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
-
+                                            
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->user_id }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->about }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->problems }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->date_init }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->date_end }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$workorder->client_id}}
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $workorder->client_id }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('workorders.destroy', $workorder->id) }}" method="POST">

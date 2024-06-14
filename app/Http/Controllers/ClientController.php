@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClientRequest;
 use App\Models\Client;
+use App\Models\Workorder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -16,10 +17,10 @@ class ClientController extends Controller
      */
     public function index(Request $request): View
     {
-        // $clients = Client::paginate();
-        $clients = Client::with('workorders')->get();
+        $clients = Client::paginate();
 
-        return view('client.index', compact('clients'));
+        return view('client.index', compact('clients'))
+            ->with('i', ($request->input('page', 1) - 1) * $clients->perPage());
     }
 
     /**
@@ -80,5 +81,16 @@ class ClientController extends Controller
 
         return Redirect::route('clients.index')
             ->with('success', 'Client deleted successfully');
+    }
+    public function inicio()
+    {
+       $clientes = Client::with('workorders')->get();
+        return view('inicio', ['clientes' => $clientes]);
+
+    }
+    public function inicioShow( $id){
+    $client = Client::find($id);
+    $orders = Workorder::where('client_id', $id)->get();
+    return view('inicio-show', compact('client','orders'));
     }
 }

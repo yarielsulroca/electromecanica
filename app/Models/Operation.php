@@ -15,11 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $date_out
  * @property $worker_id
  * @property $labour_id
- * @property $component_id
+ * @property $componente_id
  * @property $created_at
  * @property $updated_at
  *
- * @property Component $component
+ * @property Componente $componente
  * @property Labour $labour
  * @property Worker $worker
  * @package App
@@ -27,47 +27,39 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Operation extends Model
 {
-
-    static $rules = [
-		'name' => 'required',
-		'worker_id' => 'required',
-		'labour_id' => 'required',
-		'component_id' => 'required',
-    ];
-
+    
     protected $perPage = 20;
 
     /**
-     * Attributes that should be mass-assignable.
+     * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
-    protected $fillable = ['description','name','about','date_int','date_out','worker_id','labour_id','component_id'];
+    protected $fillable = ['description', 'name', 'about', 'date_int', 'date_out', 'worker_id', 'labour_id', 'componente_id'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function component()
+    public function componente()
     {
-        return $this->hasOne('App\Models\Component', 'id', 'component_id');
+        return $this->belongsTo(\App\Models\Componente::class, 'componente_id', 'id');
     }
-
+    
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function labour()
     {
-        return $this->belongsTo('App\Models\Labour', 'id', 'labour_id');
+        return $this->belongsTo(\App\Models\Labour::class, 'labour_id', 'id');
     }
-
+    
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function worker()
     {
-        return $this->belongsTo('App\Models\Worker', 'id', 'worker_id');
+        return $this->belongsTo(\App\Models\Worker::class, 'worker_id', 'id');
     }
-
-
+    
 }

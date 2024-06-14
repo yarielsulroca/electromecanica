@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WorkorderRequest;
-use App\Models\Client;
 use App\Models\Workorder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\WorkorderRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -17,7 +16,7 @@ class WorkorderController extends Controller
      */
     public function index(Request $request): View
     {
-        $workorders = Workorder::with('client')->paginate();
+        $workorders = Workorder::paginate();
 
         return view('workorder.index', compact('workorders'))
             ->with('i', ($request->input('page', 1) - 1) * $workorders->perPage());
@@ -81,12 +80,5 @@ class WorkorderController extends Controller
 
         return Redirect::route('workorders.index')
             ->with('success', 'Workorder deleted successfully');
-    }
-
-    public function workordersByClient()
-    {
-        $clients = Client::withCount('workorders')->get();
-
-        return view('workorders.chart', compact('clients'));
     }
 }
